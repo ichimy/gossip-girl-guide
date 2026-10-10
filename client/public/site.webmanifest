@@ -1,0 +1,17 @@
+{
+  "name": "Gossip Girl Guide · 绯闻女孩上东区指南",
+  "short_name": "GG Guide",
+  "description": "《绯闻女孩》非官方双语资料站：角色图鉴、剧情时间轴、CP 关系图、经典台词、纽约取景地打卡与时尚穿搭解析。",
+  "lang": "zh-CN",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0a0a10",
+  "theme_color": "#0a0a10",
+  "icons": [
+    { "src": "./favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "./favicon-32.png", "sizes": "32x32", "type": "image/png" },
+    { "src": "./apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}
