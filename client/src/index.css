@@ -1,0 +1,28 @@
+/**
+ * Tailwind 入口。`source(none)` 关闭自动扫描，类名来源用下面的 @source 显式指定。
+ * 设计 token 见 ./tailwind-theme.css，排版相关见 ./typography.css。
+ */
+@import 'tailwindcss' source(none);
+@import "tw-animate-css";
+@import "./tailwind-theme.css";
+@import "./typography.css";
+
+@source "./**/*.{ts,tsx,css}";
+@source "../../shared/**/*.{ts,tsx}";
+@source "../../node_modules/streamdown/dist/*.js";
+@config "../../tailwind.config.ts";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+
+  /* 顶部导航固定高度补偿：锚点跳转时区块标题不被顶栏遮挡 */
+  section[id] {
+    scroll-margin-top: 4rem;
+  }
+}

@@ -1,0 +1,27 @@
+/** 时间轴专用样式（由 TimelineSection 引入） */
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: hsl(240 8% 22%);
+  transform: translateX(-50%);
+}
+
+.timeline-progress {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, hsl(42 85% 58%), hsl(335 70% 72%));
+  transform: translateX(-50%);
+  transition: height 0.3s ease-out;
+}
+
+@media (max-width: 767px) {
+  .timeline-line,
+  .timeline-progress {
+    left: 24px !important;
+  }
+}
