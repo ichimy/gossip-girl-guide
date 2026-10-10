@@ -2,6 +2,8 @@
 
 **[中文说明](./README.zh-CN.md)**
 
+**Live demo:** https://ichimy.github.io/gossip-girl-guide/
+
 An unofficial, bilingual (English / 中文) single-page guide to *Gossip Girl* — character profiles, a season-by-season timeline, the relationship map, iconic quotes, New York filming locations, fashion breakdowns, soundtrack picks, cast updates and behind-the-scenes trivia.
 
 Built with Vite + React 19 + TypeScript + Tailwind CSS v4 + shadcn/ui. No backend and no external CDN requests: the whole site ships as static files, fonts and images included.

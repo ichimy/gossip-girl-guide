@@ -2,6 +2,8 @@
 
 **[English](./README.md)**
 
+**在线预览：** https://ichimy.github.io/gossip-girl-guide/
+
 《绯闻女孩》粉丝向单页资料站：角色图鉴、六季剧情时间轴、CP 关系图、经典台词、纽约取景地打卡、时尚穿搭解析、原声配乐、演员现状与幕后彩蛋。全站中英双语。
 
 技术栈：Vite + React 19 + TypeScript + Tailwind CSS v4 + shadcn/ui。没有后端，也不请求任何外部 CDN —— 字体和图片都在仓库里，构建产物是纯静态文件。
