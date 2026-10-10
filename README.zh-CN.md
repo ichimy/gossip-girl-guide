@@ -1,65 +1,40 @@
-# Gossip Girl Guide · 绯闻女孩上东区指南
+![Gossip Girl Guide](./client/public/og-cover.png)
 
 **[English](./README.md)**
 
-**在线预览：** https://ichimy.github.io/gossip-girl-guide/
+**在线访问：** https://ichimy.github.io/gossip-girl-guide/
 
-《绯闻女孩》粉丝向单页资料站：角色图鉴、六季剧情时间轴、CP 关系图、经典台词、纽约取景地打卡、时尚穿搭解析、原声配乐、演员现状与幕后彩蛋。全站中英双语。
+《绯闻女孩》非官方双语资料站 —— 一页翻完上东区：每个角色、每一季、每句经典台词，以及值得专程去打卡的纽约地址。
 
-技术栈：Vite + React 19 + TypeScript + Tailwind CSS v4 + shadcn/ui。没有后端，也不请求任何外部 CDN —— 字体和图片都在仓库里，构建产物是纯静态文件。
+## 里面有什么
 
-## 功能亮点
-
-- **中英双语**：顶栏「中 / EN」切换，选择会存进 `localStorage`；也支持 `?lang=zh` / `?lang=en` 直接分享指定语言
-- **暗色杂志风设计**：深灰底 + 奢华金 + 玫瑰粉，设计变量集中在 `client/src/tailwind-theme.css`
-- **锚点导航**：平滑滚动 + 滚动高亮当前区块
-- **滚动揭示动效**（Framer Motion）与 **ECharts 交互式关系图谱**
-- **完全自包含**：Playfair Display 字体与图片全部本地化，零第三方请求
-
-## 本地开发
-
-安装依赖并启动开发服务器：
-
-    npm install
-    npm run dev
-
-打开 http://localhost:8080/ 即可。
-
-| 命令 | 说明 |
+| 板块 | 内容 |
 | --- | --- |
-| `npm run dev` | 启动开发服务器（8080 端口，热更新） |
-| `npm run build` | 类型检查 + 构建静态产物到 `dist/` |
-| `npm run preview` | 本地预览构建产物 |
-| `npm run typecheck` | 仅类型检查 |
-| `npm run lint` | ESLint 检查 |
-| `npm run format` | Prettier 格式化 |
+| **角色图鉴** | 八位核心人物：性格、风格与台词记忆点 |
+| **剧集概览** | 播出年份、季数与集数、播出平台、奖项荣誉 |
+| **剧情时间轴** | 六季逐季梳理，标出每一季不可错过的转折 |
+| **CP 关系图** | 交互式关系图谱：谁爱过谁、谁背叛过谁、谁最终结婚 |
+| **经典台词** | 十二句定义这部剧的名场面台词 |
+| **取景打卡** | 16 个真实纽约取景地，地址可一键复制 |
+| **时尚穿搭** | Blair 的精致名媛风 vs Serena 的随性波西米亚风 |
+| **原声配乐** | 16 首经典歌曲，以及它们出现在哪一场戏 |
+| **演员现状** | 六位主演戏外的人生轨迹 |
+| **幕后彩蛋** | 12 条幕后花絮、客串明星与重启动态 |
 
-`dist/` 是纯静态产物，可直接部署到 GitHub Pages、Netlify、Vercel 或任意静态服务器。
+## 中英双语
 
-## 目录结构
+全站支持 **中文 / English** 切换：点顶栏的「中 / EN」，或用 `?lang=zh`、`?lang=en` 直链分享指定语言，选择会被记住。
 
-| 路径 | 说明 |
-| --- | --- |
-| `client/index.html` | 入口 HTML |
-| `client/public/fonts/` | 本地托管的 Playfair Display 字体 |
-| `client/src/i18n/` | 语言 Provider、语言探测、`LText` 类型 |
-| `client/src/components/` | 顶部导航、移动端抽屉、锚点链接、语言切换、shadcn/ui |
-| `client/src/pages/HomePage/` | 每个区块一个组件，双语文案就地维护 |
-| `client/src/tailwind-theme.css` | 设计 token（配色、字体、圆角、阴影） |
-| `shared/static/images/` | 角色与 Hero 图片 |
+## 图片来源与致谢
 
-### 翻译是怎么组织的
+- **角色图片：** <图片方名称> —— 已获授权，特此致谢
+- **头图：** 为本项目绘制的矢量插画
+- 《绯闻女孩》及相关角色、台词版权归 Warner Bros. / CBS Studios 所有。本站是非官方、非商业的粉丝作品，与其无隶属或授权关系。
 
-项目没有引入 i18n 框架。文案以 `{ zh, en }` 字面量就地写在内容旁（类型为 `LText`），组件通过 `useLocale()` 取当前语言。中英文并排便于对照校对，而且漏翻译时 TypeScript 会直接报错。
+## 授权
 
-## 参与贡献
+源代码基于 [MIT 协议](./LICENSE) 开源；粉丝向图文物料仅供欣赏交流，不在该授权范围内。
 
-欢迎提 issue 或 PR。新增内容时请**补齐两种语言**：写成 `{ zh: '…', en: '…' }`，以满足 `LText` 类型约束。
+---
 
-## 授权与声明
-
-源代码基于 [MIT 协议](./LICENSE) 开源。
-
-本项目是非官方、非商业的粉丝作品。《绯闻女孩》及相关角色、台词、商标版权归 Warner Bros. / CBS Studios 所有，本项目与其无隶属或授权关系。
-
-`shared/static/images/` 下的图片仅用于粉丝向展示，**不在 MIT 授权范围内**；如需分发本项目，请替换为你自己的素材。
+基于 React、Vite 与 Tailwind CSS 构建。如果你发现内容有误，或想补充某个场景、地址、台词，欢迎提 issue 或 PR。

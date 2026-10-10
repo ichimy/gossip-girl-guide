@@ -3,6 +3,7 @@ import { ArrowUpIcon, HeartIcon, Share2Icon, MessageSquareIcon, TwitterIcon, Boo
 import { motion, AnimatePresence } from "framer-motion";
 
 import { useLocale, type LText } from "@/i18n";
+import { HERO_CREDIT, IMAGE_CREDIT } from "@/credits";
 
 const TEXT = {
   tagline: { zh: "上东区的秘密，永远在这里", en: "The Upper East Side secrets live here, always" },
@@ -101,6 +102,12 @@ export default function FooterSection() {
             <div className="text-center space-y-2">
               <p className="text-muted-foreground text-xs">
                 {TEXT.disclaimer[locale]}
+              </p>
+              <p className="text-muted-foreground/70 text-xs">
+                {IMAGE_CREDIT[locale]}
+              </p>
+              <p className="text-muted-foreground/50 text-xs">
+                {HERO_CREDIT[locale]}
               </p>
               <p className="text-muted-foreground/60 text-xs">
                 © {new Date().getFullYear()} Gossip Girl Fan Archive · All Rights Reserved · Made with{" "}

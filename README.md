@@ -1,67 +1,40 @@
-# Gossip Girl Guide
+![Gossip Girl Guide](./client/public/og-cover.png)
 
 **[中文说明](./README.zh-CN.md)**
 
-**Live demo:** https://ichimy.github.io/gossip-girl-guide/
+**Online:** https://ichimy.github.io/gossip-girl-guide/
 
-An unofficial, bilingual (English / 中文) single-page guide to *Gossip Girl* — character profiles, a season-by-season timeline, the relationship map, iconic quotes, New York filming locations, fashion breakdowns, soundtrack picks, cast updates and behind-the-scenes trivia.
+An unofficial, bilingual fan guide to *Gossip Girl* — a single page you can scroll through like a magazine: every character, every season, every great line, and every Upper East Side address worth knowing.
 
-Built with Vite + React 19 + TypeScript + Tailwind CSS v4 + shadcn/ui. No backend and no external CDN requests: the whole site ships as static files, fonts and images included.
+## What's inside
 
-## Features
-
-- **Bilingual UI** — switch between English and 中文 from the top bar; the choice is remembered in `localStorage`, and `?lang=en` / `?lang=zh` deep links work too
-- **Dark editorial design** — an "Upper East Side" palette of deep charcoal, gold and rose, defined as tokens in `client/src/tailwind-theme.css`
-- **Anchor navigation** with smooth scrolling and scroll-spy highlighting
-- **Scroll-reveal animations** (Framer Motion) and an interactive **ECharts relationship graph**
-- **Self-contained assets** — self-hosted Playfair Display webfonts, local images, zero third-party requests
-
-## Getting started
-
-Install dependencies and start the dev server:
-
-    npm install
-    npm run dev
-
-Then open http://localhost:8080/.
-
-| Command | Description |
+| Section | What you get |
 | --- | --- |
-| `npm run dev` | Dev server on port 8080, with HMR |
-| `npm run build` | Type check + build the static site into `dist/` |
-| `npm run preview` | Serve the production build locally |
-| `npm run typecheck` | Type check only |
-| `npm run lint` | ESLint |
-| `npm run format` | Prettier |
+| **Characters** | The eight central figures — who they are, what they wear, how they talk |
+| **Series overview** | Air dates, seasons, network, awards and where the story lives |
+| **Timeline** | Six seasons, season by season, with the moments that mattered |
+| **Relationship map** | An interactive graph of who loved, betrayed or married whom |
+| **Iconic quotes** | Twelve lines that defined the show |
+| **Filming locations** | Sixteen real New York spots with addresses you can copy |
+| **Fashion** | Blair's polished debutante wardrobe vs Serena's effortless boho |
+| **Soundtrack** | Sixteen tracks and the scenes they belong to |
+| **Cast now** | Where the six leads are today |
+| **Trivia** | Twelve behind-the-scenes stories, guest stars and reboot notes |
 
-The build output in `dist/` is fully static — drop it on GitHub Pages, Netlify, Vercel or any web server.
+## Reading it in two languages
 
-## Project structure
+The whole guide is available in **English** and **中文**. Use the toggle in the top bar, or link straight to a language with `?lang=en` / `?lang=zh` — the site remembers your choice for next time.
 
-| Path | What it is |
-| --- | --- |
-| `client/index.html` | HTML entry |
-| `client/public/fonts/` | Self-hosted Playfair Display webfonts |
-| `client/src/i18n/` | Locale provider, language detection, `LText` type |
-| `client/src/components/` | Top bar, mobile drawer, anchor links, language switcher, shadcn/ui |
-| `client/src/pages/HomePage/` | One component per section, bilingual content inline |
-| `client/src/tailwind-theme.css` | Design tokens (colours, fonts, radii, shadows) |
-| `shared/static/images/` | Character and hero imagery |
+## Credits & thanks
 
-### How the i18n works
+- **Character images:** <source> — used with permission (thank you!)
+- **Hero artwork:** vector illustration created for this project
+- *Gossip Girl*, its characters and its quotes belong to Warner Bros. / CBS Studios. This guide is an unofficial, non-commercial fan project and is not affiliated with or endorsed by them.
 
-There is no i18n framework. Content is written inline as `{ zh, en }` literals (typed as `LText`), and components read the active locale from `useLocale()`. Both languages sit side by side so contributors can proofread them together — and TypeScript errors if a translation is missing.
+## License
 
-## Contributing
+The source code is released under the [MIT license](./LICENSE). The fan content and imagery are shared for appreciation only and are not covered by that license.
 
-Issues and pull requests are welcome. When adding content, please fill in **both** languages: use `{ zh: '…', en: '…' }` objects so the `LText` type stays satisfied.
+---
 
-## License & disclaimer
-
-Source code is released under the [MIT license](./LICENSE).
-
-This is an unofficial, non-commercial fan project. *Gossip Girl* and all related characters, quotes and trademarks belong to Warner Bros. / CBS Studios; this project is not affiliated with or endorsed by them.
-
-Images under `shared/static/images/` are fan board art used for illustration only and are **not** covered by the MIT license — replace them with your own assets if you redistribute this project.
-
-The MIT license covers the source code only; character names, quotes, trademarks and any third-party imagery remain the property of their respective owners.
+Built with React, Vite and Tailwind CSS. If you spot something wrong or want to add a scene, an address or a line, issues and pull requests are welcome.

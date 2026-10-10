@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ChevronDownIcon, CrownIcon } from "lucide-react";
 
-import heroBg from "../../../../shared/static/images/hero-bg.webp";
+import heroSkyline from "@/assets/hero-upper-east-side.svg";
 import { useLocale } from "@/i18n";
 
 const TEXT = {
@@ -72,30 +72,30 @@ export default function HeroSection() {
 
   return (
     <section className="w-full relative overflow-hidden">
-      {/* Background Image with Overlay */}
+      {/* 夜空底色 */}
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-[hsl(240_12%_9%)] via-[hsl(240_10%_6%)] to-[hsl(240_10%_4%)]" />
+
+      {/* 暖金色光晕，落在天际线上方 */}
       <div
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage: `url(${heroBg})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      />
-
-      {/* Gradient Overlays */}
-      <div className="absolute inset-0 z-10 bg-gradient-to-b from-[hsl(240_10%_8%)]/90 via-[hsl(240_10%_5%)]/80 to-[hsl(240_10%_5%)]" />
-
-      {/* Golden Radial Glow */}
-      <div
-        className="absolute inset-0 z-10"
-        style={{
           background:
-            "radial-gradient(circle at 50% 30%, hsla(42,85%,58%,0.08) 0%, transparent 60%)",
+            "radial-gradient(circle at 50% 64%, hsla(42,85%,58%,0.10) 0%, transparent 58%)",
         }}
       />
+
+      {/* 上东区黄昏天际线（矢量剪影，按宽度铺满，落在标题下方） */}
+      <div
+        className="absolute inset-0 z-0 bg-no-repeat bg-[length:100%_auto]"
+        style={{ backgroundImage: `url(${heroSkyline})`, backgroundPosition: 'center 82%' }}
+        aria-hidden="true"
+      />
+
+      {/* 上下压暗，拉开标题与天际线的层次 */}
+      <div className="absolute inset-0 z-10 bg-gradient-to-b from-[hsl(240_10%_6%)]/90 via-[hsl(240_10%_6%)]/45 to-[hsl(240_10%_4%)]/70" />
 
       {/* Content Container */}
-      <div className="relative z-20 max-w-6xl mx-auto px-4 md:px-8 py-32 md:py-48 lg:py-56">
+      <div className="relative z-20 max-w-6xl mx-auto px-4 md:px-8 py-20 md:py-24 lg:py-28">
         <motion.div
           className="flex flex-col items-center text-center"
           variants={containerVariants}
