@@ -5,9 +5,12 @@ import { defineConfig } from 'vite';
 
 /**
  * Vite 配置：root 指向 client/，开发服务器端口 8080。
+ * base 默认相对路径（域名根目录、静态托管都能直接跑）；部署在子路径时
+ * 用 VITE_BASE_PATH 覆盖，例如 GitHub Pages 项目页：VITE_BASE_PATH=/<repo>/
  */
 export default defineConfig({
   root: path.resolve(__dirname, 'client'),
+  base: process.env.VITE_BASE_PATH || './',
   plugins: [react()],
   resolve: {
     alias: {

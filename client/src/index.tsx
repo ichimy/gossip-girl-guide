@@ -53,9 +53,14 @@ const AppErrorFallback = ({
 };
 
 const MainApp = () => {
+  // 部署在子路径时（如 GitHub Pages 的 /<repo>/），路由 basename 需要与之一致；
+  // 本地开发与域名根目录部署时 BASE_URL 为 './'，统一按 '/' 处理。
+  const baseUrl = import.meta.env.BASE_URL;
+  const basename = baseUrl && baseUrl !== './' ? baseUrl : '/';
+
   return (
     <LocaleProvider>
-      <BrowserRouter>
+      <BrowserRouter basename={basename}>
         <ErrorBoundary
           fallbackRender={({ error, resetErrorBoundary }) => (
             <AppErrorFallback

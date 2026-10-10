@@ -4,14 +4,14 @@ import type { EChartsOption } from 'echarts';
 import { HeartIcon, StarIcon, CrownIcon, SparklesIcon } from 'lucide-react';
 import { useRef } from 'react';
 import { Image } from '@/components/ui/image';
-import serenaImg from '../../../../shared/static/images/serena.jpg';
-import blairImg from '../../../../shared/static/images/blair.jpg';
-import chuckImg from '../../../../shared/static/images/chuck.jpg';
-import nateImg from '../../../../shared/static/images/nate.jpg';
-import danImg from '../../../../shared/static/images/dan.jpg';
-import jennyImg from '../../../../shared/static/images/jenny.jpg';
-import vanessaImg from '../../../../shared/static/images/vanessa.jpg';
-import georginaImg from '../../../../shared/static/images/georgina.jpg';
+import serenaImg from '../../../../shared/static/images/serena.webp';
+import blairImg from '../../../../shared/static/images/blair.webp';
+import chuckImg from '../../../../shared/static/images/chuck.webp';
+import nateImg from '../../../../shared/static/images/nate.webp';
+import danImg from '../../../../shared/static/images/dan.webp';
+import jennyImg from '../../../../shared/static/images/jenny.webp';
+import vanessaImg from '../../../../shared/static/images/vanessa.webp';
+import georginaImg from '../../../../shared/static/images/georgina.webp';
 import { useLocale, type LText, type Locale } from '@/i18n';
 
 const TEXT = {

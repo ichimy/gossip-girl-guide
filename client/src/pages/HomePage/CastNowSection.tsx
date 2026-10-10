@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
 import { StarIcon, HeartIcon, CameraIcon, MusicIcon, AwardIcon } from "lucide-react";
 import { Image } from "@/components/ui/image";
-import serenaImg from "../../../../shared/static/images/serena.jpg";
-import blairImg from "../../../../shared/static/images/blair.jpg";
-import chuckImg from "../../../../shared/static/images/chuck.jpg";
-import nateImg from "../../../../shared/static/images/nate.jpg";
-import danImg from "../../../../shared/static/images/dan.jpg";
-import jennyImg from "../../../../shared/static/images/jenny.jpg";
+import serenaImg from "../../../../shared/static/images/serena.webp";
+import blairImg from "../../../../shared/static/images/blair.webp";
+import chuckImg from "../../../../shared/static/images/chuck.webp";
+import nateImg from "../../../../shared/static/images/nate.webp";
+import danImg from "../../../../shared/static/images/dan.webp";
+import jennyImg from "../../../../shared/static/images/jenny.webp";
 import { useLocale, type LText } from "@/i18n";
 
 const TEXT = {

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ChevronDownIcon, CrownIcon } from "lucide-react";
 
-import heroBg from "../../../../shared/static/images/hero-bg.jpg";
+import heroBg from "../../../../shared/static/images/hero-bg.webp";
 import { useLocale } from "@/i18n";
 
 const TEXT = {

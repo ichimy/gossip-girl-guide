@@ -2,8 +2,8 @@ import React from 'react';
 import { CrownIcon, SparklesIcon, GemIcon, ShirtIcon, RibbonIcon, StarIcon, QuoteIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Image } from '@/components/ui/image';
-import blairImg from '../../../../shared/static/images/blair.jpg';
-import serenaImg from '../../../../shared/static/images/serena.jpg';
+import blairImg from '../../../../shared/static/images/blair.webp';
+import serenaImg from '../../../../shared/static/images/serena.webp';
 import { useLocale, type LText } from '@/i18n';
 
 const TEXT = {
