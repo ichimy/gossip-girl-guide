@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { CrownIcon, StarIcon, HeartIcon, SparklesIcon, ShieldIcon, ZapIcon, EyeIcon, FlameIcon } from "lucide-react";
 import { Image } from "@/components/ui/image";
+import { CARD } from "@/lib/surface";
 import serenaImg from "../../../../shared/static/images/serena.webp";
 import blairImg from "../../../../shared/static/images/blair.webp";
 import chuckImg from "../../../../shared/static/images/chuck.webp";
@@ -10,6 +11,7 @@ import danImg from "../../../../shared/static/images/dan.webp";
 import jennyImg from "../../../../shared/static/images/jenny.webp";
 import vanessaImg from "../../../../shared/static/images/vanessa.webp";
 import georginaImg from "../../../../shared/static/images/georgina.webp";
+import SectionHeader from "@/components/SectionHeader";
 import { useLocale, type LText } from "@/i18n";
 
 const TEXT = {
@@ -203,17 +205,12 @@ export default function CharactersSection() {
   return (
     <section id="characters" className="max-w-6xl mx-auto px-4 md:px-8 py-16 md:py-24">
       {/* Section Header */}
-      <div className="mb-12 md:mb-16">
-        <div className="flex items-center gap-3 mb-4">
-          <div className="w-1 h-6 bg-primary/60 rounded-full" />
-          <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground tracking-tight">
-            {TEXT.title[locale]}
-          </h2>
-        </div>
-        <p className="text-muted-foreground text-base md:text-lg max-w-2xl">
-          {TEXT.intro[locale]}
-        </p>
-      </div>
+      <SectionHeader
+        className="mb-12 md:mb-16"
+        eyebrow={{ zh: '人物档案', en: 'Character files' }}
+        title={TEXT.title}
+        intro={TEXT.intro[locale]}
+      />
 
       {/* Character Grid */}
       <motion.div
@@ -232,14 +229,14 @@ export default function CharactersSection() {
             onMouseLeave={() => setHoveredId(null)}
           >
             <div
-              className={`relative h-full bg-gradient-to-br ${char.color} bg-card border border-border rounded-lg overflow-hidden shadow-[0_4px_20px_-4px_rgba(0_0_0_0.6)] transition-all duration-300 group-hover:border-primary/40 group-hover:translate-y-[-4px]`}
+              className={`relative h-full bg-gradient-to-br ${char.color} ${CARD} overflow-hidden transition-all duration-300 group-hover:border-primary/40 group-hover:-translate-y-1`}
             >
               {/* Character Photo */}
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative h-56 overflow-hidden md:h-60">
                 <Image
                   src={char.photo}
                   alt={char.name}
-                  className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent" />
                 {/* Avatar Badge overlay */}

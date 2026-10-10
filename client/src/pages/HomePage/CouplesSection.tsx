@@ -3,7 +3,9 @@ import ReactECharts from 'echarts-for-react';
 import type { EChartsOption } from 'echarts';
 import { HeartIcon, StarIcon, CrownIcon, SparklesIcon } from 'lucide-react';
 import { useRef } from 'react';
+import SectionHeader from '@/components/SectionHeader';
 import { Image } from '@/components/ui/image';
+import { CARD, CARD_PADDING_COMPACT, PANEL } from '@/lib/surface';
 import serenaImg from '../../../../shared/static/images/serena.webp';
 import blairImg from '../../../../shared/static/images/blair.webp';
 import chuckImg from '../../../../shared/static/images/chuck.webp';
@@ -353,16 +355,12 @@ export default function CouplesSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/10 border border-accent/20 text-accent text-sm mb-4">
-            <HeartIcon className="size-4" />
-            <span>Love & Relationships</span>
-          </div>
-          <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-3">
-            {TEXT.title[locale]}
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            {TEXT.intro[locale]}
-          </p>
+          <SectionHeader
+            align="center"
+            eyebrow={{ zh: '爱情关系网', en: 'Love & Relationships' }}
+            title={TEXT.title}
+            intro={TEXT.intro[locale]}
+          />
         </motion.div>
 
         {/* Desktop: ECharts Graph */}
@@ -371,7 +369,7 @@ export default function CouplesSection() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.6 }}
-          className="hidden md:block bg-card/50 backdrop-blur-sm border border-border rounded-xl p-4 shadow-[0_4px_20px_-4px_rgba(0_0_0_0.6)]"
+          className={`hidden md:block ${PANEL} p-4`}
         >
           <ReactECharts
             ref={chartRef}
@@ -393,7 +391,7 @@ export default function CouplesSection() {
             <motion.div
               key={couple.shortName}
               variants={itemVariants}
-              className="bg-card border border-border rounded-lg p-5 shadow-[0_4px_20px_-4px_rgba(0_0_0_0.6)]"
+              className={`${CARD} ${CARD_PADDING_COMPACT}`}
             >
               {/* Couple Photos */}
               <div className="flex items-center justify-center gap-4 mb-4">
@@ -401,7 +399,7 @@ export default function CouplesSection() {
                   <Image
                     src={couple.photo1}
                     alt={couple.name1}
-                    className="w-16 h-16 rounded-full object-cover border-2 border-primary/30 shadow-[0_0_12px_rgba(212_165_116_0.3)]"
+                    className="w-16 h-16 rounded-full object-cover object-top border-2 border-primary/30 shadow-[0_0_12px_rgba(212_165_116_0.3)]"
                   />
                 ) : (
                   <div className="w-16 h-16 rounded-full bg-card border-2 border-border flex items-center justify-center text-muted-foreground font-serif text-lg">
@@ -418,7 +416,7 @@ export default function CouplesSection() {
                   <Image
                     src={couple.photo2}
                     alt={couple.name2}
-                    className="w-16 h-16 rounded-full object-cover border-2 border-primary/30 shadow-[0_0_12px_rgba(212_165_116_0.3)]"
+                    className="w-16 h-16 rounded-full object-cover object-top border-2 border-primary/30 shadow-[0_0_12px_rgba(212_165_116_0.3)]"
                   />
                 ) : (
                   <div className="w-16 h-16 rounded-full bg-card border-2 border-border flex items-center justify-center text-muted-foreground font-serif text-lg">

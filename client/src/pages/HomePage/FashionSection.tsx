@@ -4,7 +4,9 @@ import { motion } from 'framer-motion';
 import { Image } from '@/components/ui/image';
 import blairImg from '../../../../shared/static/images/blair.webp';
 import serenaImg from '../../../../shared/static/images/serena.webp';
+import SectionHeader from '@/components/SectionHeader';
 import { useLocale, type LText } from '@/i18n';
+import { CARD } from '@/lib/surface';
 
 const TEXT = {
   title: { zh: '时尚穿搭', en: 'Fashion & Style' },
@@ -92,17 +94,12 @@ const FashionSection: React.FC = () => {
   return (
     <section id="fashion" className="w-full max-w-6xl mx-auto px-4 md:px-8 py-16 md:py-24">
       {/* Section Header */}
-      <div className="mb-12 md:mb-16">
-        <div className="flex items-center gap-3 mb-4">
-          <div className="w-1 h-6 bg-primary/60 rounded-full" />
-          <h2 className="font-serif text-2xl md:text-3xl font-bold text-foreground tracking-tight">
-            {TEXT.title[locale]}
-          </h2>
-        </div>
-        <p className="text-muted-foreground text-base md:text-lg max-w-2xl">
-          {TEXT.intro[locale]}
-        </p>
-      </div>
+      <SectionHeader
+        className="mb-12 md:mb-16"
+        eyebrow={{ zh: 'Blair vs Serena', en: 'Blair vs Serena' }}
+        title={TEXT.title}
+        intro={TEXT.intro[locale]}
+      />
 
       {/* Style Comparison */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-12">
@@ -112,14 +109,14 @@ const FashionSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.6 }}
-          className="group relative bg-card border border-border rounded-lg overflow-hidden shadow-[0_4px_20px_-4px_rgba(0_0_0_0.6)] hover:border-[hsl(335_70%_72%)]/40 hover:translate-y-[-4px] transition-all duration-300"
+          className={`group relative ${CARD} overflow-hidden transition-all duration-300 hover:border-[hsl(335_70%_72%)]/40 hover:-translate-y-1`}
         >
           {/* Character Photo */}
           <div className="relative h-56 overflow-hidden">
             <Image
               src={FASHION_DATA.blair.photo}
               alt={FASHION_DATA.blair.name}
-              className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+              className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent" />
             <div className="absolute bottom-4 left-4 flex items-center gap-3">
@@ -188,14 +185,14 @@ const FashionSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.6, delay: 0.15 }}
-          className="group relative bg-card border border-border rounded-lg overflow-hidden shadow-[0_4px_20px_-4px_rgba(0_0_0_0.6)] hover:border-[hsl(42_85%_58%)]/40 hover:translate-y-[-4px] transition-all duration-300"
+          className={`group relative ${CARD} overflow-hidden transition-all duration-300 hover:border-[hsl(42_85%_58%)]/40 hover:-translate-y-1`}
         >
           {/* Character Photo */}
           <div className="relative h-56 overflow-hidden">
             <Image
               src={FASHION_DATA.serena.photo}
               alt={FASHION_DATA.serena.name}
-              className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+              className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent" />
             <div className="absolute bottom-4 left-4 flex items-center gap-3">
@@ -265,7 +262,7 @@ const FashionSection: React.FC = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-50px' }}
         transition={{ duration: 0.6, delay: 0.3 }}
-        className="bg-card border border-border rounded-lg p-6 md:p-8 shadow-[0_4px_20px_-4px_rgba(0_0_0_0.6)]"
+        className={`${CARD} p-6 md:p-8`}
       >
         <div className="flex items-center gap-3 mb-6">
           <div className="w-1 h-6 bg-primary/60 rounded-full" />

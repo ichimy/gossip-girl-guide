@@ -2,7 +2,9 @@ import React from 'react';
 import { CalendarIcon, TvIcon, BookOpenIcon, AwardIcon, StarIcon, TrophyIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
 
+import SectionHeader from '@/components/SectionHeader';
 import { useLocale, type LText } from '@/i18n';
+import { CARD, CARD_PADDING, PANEL } from '@/lib/surface';
 
 const TEXT = {
   title: { zh: '剧集概览', en: 'Series Overview' },
@@ -35,7 +37,7 @@ const OverviewCard: React.FC<IOverviewCardProps> = ({ icon, label, value, descri
     viewport={{ once: true, amount: 0.3 }}
     transition={{ duration: 0.5 }}
     whileHover={{ y: -4, borderColor: 'hsla(42, 85%, 58%, 0.4)' }}
-    className="group relative bg-card border border-border rounded-lg p-6 shadow-[0_4px_20px_-4px_rgba(0_0_0_0.6)] transition-all duration-300 hover:shadow-[0_8px_30px_-4px_rgba(66_153_225_0.15)]"
+    className={`group relative ${CARD} ${CARD_PADDING} transition-all duration-300`}
   >
     <div className="flex items-start gap-4">
       <div className="shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary/20 transition-colors duration-300">
@@ -168,17 +170,13 @@ const OverviewSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.5 }}
-          className="mb-12"
+          className="mb-12 md:mb-16"
         >
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-1 h-6 bg-primary/60 rounded-full" />
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground font-serif tracking-tight">
-              {TEXT.title[locale]}
-            </h2>
-          </div>
-          <p className="text-muted-foreground max-w-2xl leading-relaxed">
-            {TEXT.intro[locale]}
-          </p>
+          <SectionHeader
+            eyebrow={{ zh: '关于这部剧', en: 'About the show' }}
+            title={TEXT.title}
+            intro={TEXT.intro[locale]}
+          />
         </motion.div>
 
         {/* 四宫格数据卡片 */}
@@ -228,7 +226,7 @@ const OverviewSection: React.FC = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="mt-12 p-6 bg-card/50 backdrop-blur-sm border border-border/50 rounded-lg"
+          className={`mt-12 p-6 ${PANEL}`}
         >
           <p className="text-sm text-muted-foreground leading-relaxed">
             <span className="text-primary font-semibold">{TEXT.settingLabel[locale]}</span>

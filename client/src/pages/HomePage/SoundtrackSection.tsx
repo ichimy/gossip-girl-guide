@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MusicIcon, PlayIcon, PauseIcon, Disc3Icon, HeartIcon, SparklesIcon } from 'lucide-react';
+import { PlayIcon, PauseIcon, Disc3Icon, HeartIcon, SparklesIcon } from 'lucide-react';
 
+import SectionHeader from '@/components/SectionHeader';
 import { useLocale, type LText } from '@/i18n';
 
 const TEXT = {
@@ -185,16 +186,12 @@ export default function SoundtrackSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/10 border border-accent/20 text-accent text-sm mb-4">
-            <MusicIcon className="size-4" />
-            <span>Original Soundtrack</span>
-          </div>
-          <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-3">
-            {TEXT.title[locale]}
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            {TEXT.intro[locale]}
-          </p>
+          <SectionHeader
+            align="center"
+            eyebrow={{ zh: '原创配乐精选', en: 'Original soundtrack' }}
+            title={TEXT.title}
+            intro={TEXT.intro[locale]}
+          />
         </motion.div>
 
         {/* Featured Theme Song */}

@@ -3,7 +3,9 @@ import { motion } from 'framer-motion';
 import { ChevronDownIcon, ChevronUpIcon, CalendarIcon } from 'lucide-react';
 
 import './timeline.css';
+import SectionHeader from '@/components/SectionHeader';
 import { useLocale, type LText } from '@/i18n';
+import { CARD } from '@/lib/surface';
 
 const TEXT = {
   title: { zh: '剧情时间轴', en: 'Story Timeline' },
@@ -198,20 +200,18 @@ const TimelineSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 mb-4">
-            <div className="w-1 h-6 bg-primary/60 rounded-full" />
-            <span className="text-sm font-medium text-primary tracking-wider uppercase">
-              2007 — 2012
-            </span>
-          </div>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-foreground tracking-tight mb-4">
-            {TEXT.title[locale]}
-          </h2>
-          <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-            {TEXT.intro1[locale]}
-            <br className="hidden md:block" />
-            {TEXT.intro2[locale]}
-          </p>
+          <SectionHeader
+            align="center"
+            eyebrow={{ zh: '2007 — 2012', en: '2007 — 2012' }}
+            title={TEXT.title}
+            intro={
+              <>
+                {TEXT.intro1[locale]}
+                <br className="hidden md:block" />
+                {TEXT.intro2[locale]}
+              </>
+            }
+          />
         </motion.div>
 
         {/* Timeline Container */}
@@ -258,7 +258,7 @@ const TimelineSection = () => {
                   {/* Content Card */}
                   <div className={`ml-16 md:ml-0 md:w-[calc(50%-48px)] ${isLeft ? 'md:mr-auto md:pr-12' : 'md:ml-auto md:pl-12'}`}>
                     <motion.div
-                      className="bg-card border border-border rounded-lg shadow-[0_4px_20px_-4px_rgba(0_0_0_0.6)] overflow-hidden transition-all duration-300 hover:border-primary/40"
+                      className={`${CARD} overflow-hidden transition-all duration-300 hover:border-primary/40`}
                       whileHover={{ y: -4 }}
                     >
                       {/* Card Header */}

@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion';
 import { QuoteIcon } from 'lucide-react';
 
+import SectionHeader from '@/components/SectionHeader';
 import { useLocale } from '@/i18n';
+import { CARD, CARD_PADDING } from '@/lib/surface';
 
 const TEXT = {
   title: { zh: '经典台词', en: 'Iconic Quotes' },
@@ -132,17 +134,12 @@ const QuotesSection = () => {
     <section id="quotes" className="w-full">
       <div className="max-w-6xl mx-auto px-4 md:px-8 py-16 md:py-24">
         {/* Section Header */}
-        <div className="mb-12 md:mb-16">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-1 h-6 bg-primary/60 rounded-full" />
-            <h2 className="font-serif text-2xl md:text-3xl font-bold text-foreground tracking-tight">
-              {TEXT.title[locale]}
-            </h2>
-          </div>
-          <p className="text-muted-foreground text-sm md:text-base max-w-lg">
-            {TEXT.intro[locale]}
-          </p>
-        </div>
+        <SectionHeader
+          className="mb-12 md:mb-16"
+          eyebrow={{ zh: '金句集锦', en: 'Best lines' }}
+          title={TEXT.title}
+          intro={TEXT.intro[locale]}
+        />
 
         {/* Quotes Grid */}
         <motion.div
@@ -156,7 +153,7 @@ const QuotesSection = () => {
             <motion.div
               key={quote.id}
               variants={item}
-              className="group relative bg-card border border-border rounded-lg p-6 shadow-[0_4px_20px_-4px_rgba(0_0_0_0.6)] transition-all duration-300 hover:border-primary/40 hover:translate-y-[-4px]"
+              className={`group relative ${CARD} ${CARD_PADDING} transition-all duration-300 hover:border-primary/40 hover:-translate-y-1`}
             >
               {/* Background Quote Decoration */}
               <div className="absolute top-3 left-4 text-6xl text-primary/10 font-serif leading-none select-none pointer-events-none">

@@ -1,12 +1,14 @@
 import { motion } from "framer-motion";
 import { StarIcon, HeartIcon, CameraIcon, MusicIcon, AwardIcon } from "lucide-react";
 import { Image } from "@/components/ui/image";
+import { CARD } from "@/lib/surface";
 import serenaImg from "../../../../shared/static/images/serena.webp";
 import blairImg from "../../../../shared/static/images/blair.webp";
 import chuckImg from "../../../../shared/static/images/chuck.webp";
 import nateImg from "../../../../shared/static/images/nate.webp";
 import danImg from "../../../../shared/static/images/dan.webp";
 import jennyImg from "../../../../shared/static/images/jenny.webp";
+import SectionHeader from "@/components/SectionHeader";
 import { useLocale, type LText } from "@/i18n";
 
 const TEXT = {
@@ -150,17 +152,12 @@ export default function CastNowSection() {
     <section id="cast-now" className="w-full py-16 md:py-24">
       <div className="max-w-6xl mx-auto px-4 md:px-8">
         {/* Section Header */}
-        <div className="mb-12 md:mb-16">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-1 h-6 bg-primary/60 rounded-full" />
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground tracking-tight">
-              {TEXT.title[locale]}
-            </h2>
-          </div>
-          <p className="text-muted-foreground text-lg max-w-2xl leading-relaxed">
-            {TEXT.intro[locale]}
-          </p>
-        </div>
+        <SectionHeader
+          className="mb-12 md:mb-16"
+          eyebrow={{ zh: '戏外人生', en: 'Life after the show' }}
+          title={TEXT.title}
+          intro={TEXT.intro[locale]}
+        />
 
         {/* Cast Grid */}
         <motion.div
@@ -174,14 +171,14 @@ export default function CastNowSection() {
             <motion.div
               key={member.name}
               variants={item}
-              className="group relative bg-card border border-border rounded-lg overflow-hidden transition-all duration-300 hover:border-primary/40 hover:translate-y-[-4px] hover:shadow-[0_4px_20px_-4px_rgba(0_0_0_0.6)]"
+              className={`group relative ${CARD} overflow-hidden transition-all duration-300 hover:border-primary/40 hover:-translate-y-1`}
             >
               {/* Actor Photo */}
-              <div className="relative h-52 overflow-hidden">
+              <div className="relative h-60 overflow-hidden">
                 <Image
                   src={member.photo}
                   alt={member.name}
-                  className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent" />
                 {/* Name Badge */}

@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { MapPinIcon, CopyIcon, CheckIcon, EyeIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
 
+import SectionHeader from '@/components/SectionHeader';
 import { useLocale, type LText } from '@/i18n';
+import { CARD } from '@/lib/surface';
 
 type CategoryKey = 'all' | 'park' | 'hotel' | 'school' | 'restaurant' | 'landmark';
 
@@ -96,17 +98,12 @@ export default function LocationsSection() {
     <section className="w-full" id="locations">
       <div className="max-w-6xl mx-auto px-4 md:px-8 py-16 md:py-24">
         {/* Section Header */}
-        <div className="mb-12">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-1 h-6 bg-primary/60 rounded-full" />
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground tracking-tight">
-              {TEXT.title[locale]}
-            </h2>
-          </div>
-          <p className="text-muted-foreground text-lg ml-4">
-            {TEXT.intro[locale]}
-          </p>
-        </div>
+        <SectionHeader
+          className="mb-12 md:mb-16"
+          eyebrow={{ zh: '纽约 · 16 处', en: 'New York · 16 spots' }}
+          title={TEXT.title}
+          intro={TEXT.intro[locale]}
+        />
 
         {/* Category Filter */}
         <div className="flex flex-wrap gap-2 mb-10 ml-4">
@@ -138,7 +135,7 @@ export default function LocationsSection() {
             <motion.div
               key={loc.id}
               variants={item}
-              className="group relative bg-card border border-border rounded-lg shadow-[0_4px_20px_-4px_rgba(0_0_0_0.6)] overflow-hidden transition-all duration-300 hover:border-primary/40 hover:translate-y-[-4px]"
+              className={`group relative ${CARD} overflow-hidden transition-all duration-300 hover:border-primary/40 hover:-translate-y-1`}
               onMouseEnter={() => setHoveredId(loc.id)}
               onMouseLeave={() => setHoveredId(null)}
             >

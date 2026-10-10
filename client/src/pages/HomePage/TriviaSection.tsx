@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SparklesIcon, StarIcon, RefreshCwIcon, EyeIcon, TrophyIcon } from 'lucide-react';
 
+import SectionHeader from '@/components/SectionHeader';
 import { useLocale, type LText } from '@/i18n';
+import { CARD, CARD_PADDING } from '@/lib/surface';
 
 const TEXT = {
   title: { zh: '彩蛋与趣闻', en: 'Trivia & Easter Eggs' },
@@ -156,17 +158,12 @@ export default function TriviaSection() {
   return (
     <section id="trivia" className="w-full">
       <div className="max-w-6xl mx-auto px-4 md:px-8 py-16 md:py-24">
-        <div className="mb-12">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-1 h-6 bg-primary/60 rounded-full" />
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground tracking-tight">
-              {TEXT.title[locale]}
-            </h2>
-          </div>
-          <p className="text-muted-foreground text-lg ml-4">
-            {TEXT.intro[locale]}
-          </p>
-        </div>
+        <SectionHeader
+          className="mb-12 md:mb-16"
+          eyebrow={{ zh: '幕后揭秘', en: 'Behind the scenes' }}
+          title={TEXT.title}
+          intro={TEXT.intro[locale]}
+        />
 
         <div className="flex flex-wrap gap-2 mb-8 ml-4">
           {(Object.keys(CATEGORY_MAP) as CategoryKey[]).map((key) => {
@@ -206,10 +203,10 @@ export default function TriviaSection() {
                   layout
                   variants={itemVariants}
                   onClick={() => setExpandedId(isExpanded ? null : trivia.id)}
-                  className={`bg-card border rounded-lg p-6 cursor-pointer transition-all duration-300 shadow-[0_4px_20px_-4px_rgba(0_0_0_0.6)] ${
+                  className={`${CARD} ${CARD_PADDING} cursor-pointer transition-all duration-300 ${
                     isExpanded
                       ? 'border-primary/60 ring-2 ring-primary/20'
-                      : 'border-border hover:border-primary/40 hover:translate-y-[-4px]'
+                      : 'hover:border-primary/40 hover:-translate-y-1'
                   }`}
                 >
                   <div className="flex items-start gap-3 mb-3">
