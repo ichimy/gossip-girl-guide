@@ -61,3 +61,5 @@ Source code is released under the [MIT license](./LICENSE).
 This is an unofficial, non-commercial fan project. *Gossip Girl* and all related characters, quotes and trademarks belong to Warner Bros. / CBS Studios; this project is not affiliated with or endorsed by them.
 
 Images under `shared/static/images/` are fan board art used for illustration only and are **not** covered by the MIT license — replace them with your own assets if you redistribute this project.
+
+The MIT license covers the source code only; character names, quotes, trademarks and any third-party imagery remain the property of their respective owners.
