@@ -7,6 +7,7 @@ import {
   TwitterIcon,
   BookmarkIcon,
   GithubIcon,
+  StarIcon,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
@@ -15,6 +16,7 @@ import { useLocale, type LText } from "@/i18n";
 import { HERO_CREDIT, IMAGE_CREDIT } from "@/credits";
 
 const FEEDBACK_URL = "https://github.com/ichimy/gossip-girl-guide/issues/new";
+const REPO_URL = "https://github.com/ichimy/gossip-girl-guide";
 const SAVED_KEY = "gg-saved";
 
 const TEXT = {
@@ -31,6 +33,9 @@ const TEXT = {
   saved: { zh: "已收藏，下次直接从浏览器打开", en: "Saved for later" },
   unsaved: { zh: "已取消收藏", en: "Removed from saved" },
   feedback: { zh: "去 GitHub 提建议或纠错", en: "Suggest a fix on GitHub" },
+  starCta: { zh: "喜欢这个站点？", en: "Enjoyed this site?" },
+  starHint: { zh: "在 GitHub 上给项目点个 Star，支持持续更新", en: "Star the project on GitHub to support ongoing updates" },
+  starBtn: { zh: "Star on GitHub", en: "Star on GitHub" },
 };
 
 export default function FooterSection() {
@@ -104,6 +109,10 @@ export default function FooterSection() {
 
   const handleFeedback = () => {
     window.open(FEEDBACK_URL, '_blank', 'noopener,noreferrer');
+  };
+
+  const handleStar = () => {
+    window.open(REPO_URL, '_blank', 'noopener,noreferrer');
   };
 
   const socialButtons: Array<{
@@ -196,6 +205,30 @@ export default function FooterSection() {
                 })}
               </div>
             </div>
+
+            {/* Divider */}
+            <div className="w-24 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+
+            {/* Star on GitHub CTA */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="flex flex-col items-center gap-3"
+            >
+              <p className="text-foreground text-sm font-medium">{TEXT.starCta[locale]}</p>
+              <p className="text-muted-foreground text-xs">{TEXT.starHint[locale]}</p>
+              <button
+                type="button"
+                onClick={handleStar}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary/10 border border-primary/30 text-primary text-sm font-medium transition-all duration-300 hover:bg-primary/20 hover:border-primary/50 hover:-translate-y-0.5 hover:shadow-[0_4px_16px_-4px_rgba(212,165,116,0.3)]"
+              >
+                <StarIcon className="size-4 fill-current" />
+                {TEXT.starBtn[locale]}
+                <GithubIcon className="size-3.5 ml-1 opacity-60" />
+              </button>
+            </motion.div>
 
             {/* Divider */}
             <div className="w-24 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />

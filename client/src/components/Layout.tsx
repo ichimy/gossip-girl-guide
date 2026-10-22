@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Outlet } from 'react-router-dom';
-import { MenuIcon, XIcon, CrownIcon } from "lucide-react";
+import { MenuIcon, XIcon, CrownIcon, GithubIcon, StarIcon } from "lucide-react";
 
 import ActiveLink from '@/components/ActiveLink';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
@@ -105,6 +105,20 @@ const Layout = () => {
           </nav>
 
           <div className="flex items-center gap-2">
+            {/* GitHub Star */}
+            <a
+              href="https://github.com/ichimy/gossip-girl-guide"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:inline-flex items-center gap-1.5 h-8 px-3 rounded-full border border-primary/25 bg-primary/5 text-primary text-xs font-medium transition-all duration-300 hover:bg-primary/15 hover:border-primary/40 hover:-translate-y-0.5"
+              aria-label="Star on GitHub"
+              title="Star on GitHub"
+            >
+              <StarIcon className="size-3.5 fill-current" />
+              <span className="hidden md:inline">Star</span>
+              <GithubIcon className="size-3 opacity-60" />
+            </a>
+
             <LanguageSwitcher />
 
             {/* Mobile Menu Toggle */}

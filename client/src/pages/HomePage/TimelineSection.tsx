@@ -165,6 +165,7 @@ const TimelineSection = () => {
   const [expandedSeason, setExpandedSeason] = useState<number | null>(1);
   const timelineRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const cardRefs = useRef<Map<number, HTMLDivElement>>(new Map());
 
   useEffect(() => {
     const handleScroll = () => {
@@ -178,15 +179,41 @@ const TimelineSection = () => {
       const totalScrollable = elementHeight + windowHeight * 0.5;
       const progress = Math.min(Math.max(scrolledIntoView / totalScrollable, 0), 1);
       setScrollProgress(progress);
+
+      const viewportCenter = windowHeight / 2;
+      let closestSeason: number | null = null;
+      let closestDistance = Infinity;
+
+      cardRefs.current.forEach((el, season) => {
+        const cardRect = el.getBoundingClientRect();
+        const cardCenter = cardRect.top + cardRect.height / 2;
+        const distance = Math.abs(cardCenter - viewportCenter);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestSeason = season;
+        }
+      });
+
+      if (closestSeason !== null && closestSeason !== expandedSeason) {
+        setExpandedSeason(closestSeason);
+      }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [expandedSeason]);
 
   const toggleSeason = (season: number) => {
     setExpandedSeason(prev => prev === season ? null : season);
+  };
+
+  const setCardRef = (season: number) => (el: HTMLDivElement | null) => {
+    if (el) {
+      cardRefs.current.set(season, el);
+    } else {
+      cardRefs.current.delete(season);
+    }
   };
 
   return (
@@ -256,7 +283,10 @@ const TimelineSection = () => {
                   </div>
 
                   {/* Content Card */}
-                  <div className={`ml-16 md:ml-0 md:w-[calc(50%-48px)] ${isLeft ? 'md:mr-auto md:pr-12' : 'md:ml-auto md:pl-12'}`}>
+                  <div
+                    ref={setCardRef(season.season)}
+                    className={`ml-16 md:ml-0 md:w-[calc(50%-48px)] ${isLeft ? 'md:mr-auto md:pr-12' : 'md:ml-auto md:pl-12'}`}
+                  >
                     <motion.div
                       className={`${CARD} overflow-hidden transition-all duration-300 hover:border-primary/40`}
                       whileHover={{ y: -4 }}

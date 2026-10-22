@@ -37,13 +37,13 @@ const OverviewCard: React.FC<IOverviewCardProps> = ({ icon, label, value, descri
     viewport={{ once: true, amount: 0.3 }}
     transition={{ duration: 0.5 }}
     whileHover={{ y: -4, borderColor: 'hsla(42, 85%, 58%, 0.4)' }}
-    className={`group relative ${CARD} ${CARD_PADDING} transition-all duration-300`}
+    className={`group relative h-full ${CARD} ${CARD_PADDING} transition-all duration-300`}
   >
-    <div className="flex items-start gap-4">
+    <div className="flex items-start gap-4 h-full">
       <div className="shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary/20 transition-colors duration-300">
         {icon}
       </div>
-      <div className="flex-1 min-w-0">
+      <div className="flex-1 min-w-0 flex flex-col">
         <p className="text-sm text-muted-foreground mb-1">{label[locale]}</p>
         <p className="text-xl font-bold text-foreground font-serif tracking-tight">{value[locale]}</p>
         {description && (
@@ -180,7 +180,7 @@ const OverviewSection: React.FC = () => {
         </motion.div>
 
         {/* 四宫格数据卡片 */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12 auto-rows-fr">
           {overviewData.map((item, index) => (
             <motion.div
               key={item.label.en}
@@ -188,6 +188,7 @@ const OverviewSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="h-full"
             >
               <OverviewCard {...item} />
             </motion.div>

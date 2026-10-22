@@ -109,29 +109,41 @@ const typeLineStyleMap: Record<string, { type?: string; width: number }> = {
 // ============ ECharts Option Builder ============
 
 function buildGraphOption(locale: Locale): EChartsOption {
-  const nodes = CHARACTERS.map((char) => ({
-    id: char.id,
-    name: char.shortName,
-    fullName: char.name,
-    tag: char.tag,
-    gender: char.gender,
-    symbolSize: char.photo ? 60 : (char.gender === 'female' ? 55 : 50),
-    symbol: char.photo ? `image://${char.photo}` : undefined,
-    itemStyle: {
-      color: char.photo ? undefined : (char.gender === 'female' ? '#e84393' : '#d4a574'),
-      borderColor: char.id === 'blair' ? '#f1c40f' : (char.photo ? '#d4a574' : '#555'),
-      borderWidth: char.id === 'blair' ? 3 : 2,
-      shadowColor: char.id === 'blair' ? 'rgba(241,196,15,0.4)' : 'rgba(0,0,0,0.5)',
-      shadowBlur: char.id === 'blair' ? 20 : 10,
-    },
-    label: {
-      show: true,
-      position: 'bottom' as const,
-      fontSize: 12,
-      fontWeight: (char.id === 'blair' ? 'bold' : 'normal') as 'bold' | 'normal',
-    },
-    category: char.gender,
-  }));
+  const nodes = CHARACTERS.map((char) => {
+    const isMain = char.photo !== undefined;
+    return {
+      id: char.id,
+      name: char.shortName,
+      fullName: char.name,
+      tag: char.tag,
+      gender: char.gender,
+      symbolSize: isMain ? 64 : 52,
+      symbol: isMain ? `image://${char.photo}` : 'circle',
+      itemStyle: {
+        color: isMain ? undefined : (char.gender === 'female' ? '#e84393' : '#d4a574'),
+        borderColor: char.id === 'blair' ? '#f1c40f' : (isMain ? '#d4a574' : '#555'),
+        borderWidth: char.id === 'blair' ? 3 : 2,
+        shadowColor: char.id === 'blair' ? 'rgba(241,196,15,0.4)' : 'rgba(0,0,0,0.5)',
+        shadowBlur: char.id === 'blair' ? 20 : 10,
+      },
+      label: {
+        show: true,
+        position: 'bottom' as const,
+        fontSize: 12,
+        fontWeight: (char.id === 'blair' ? 'bold' : 'normal') as 'bold' | 'normal',
+        color: '#e0e0e0',
+        formatter: isMain ? '{b}' : `{b|${char.shortName}}`,
+        rich: {
+          b: {
+            fontSize: 12,
+            color: '#e0e0e0',
+            fontWeight: 'normal',
+          },
+        },
+      },
+      category: char.gender,
+    };
+  });
 
   const links = RELATIONSHIPS.map((rel) => ({
     source: rel.source,
@@ -159,6 +171,7 @@ function buildGraphOption(locale: Locale): EChartsOption {
       formatter: (params: any) => {
         if (params.dataType === 'node') {
           const char = CHARACTERS.find((c) => c.id === params.data.id);
+          const hasPhoto = char?.photo !== undefined;
           const rels = RELATIONSHIPS.filter(
             (r) => r.source === params.data.id || r.target === params.data.id
           );
@@ -170,8 +183,16 @@ function buildGraphOption(locale: Locale): EChartsOption {
             })
             .join('');
           return `<div style="min-width:180px">
-            <div style="font-size:15px;font-weight:bold;margin-bottom:6px">${params.data.fullName}</div>
-            ${char?.tag ? `<div style="color:#888;font-size:12px;margin-bottom:8px">${char.tag}</div>` : ''}
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+              ${hasPhoto
+                ? `<img src="${char!.photo}" style="width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid #d4a574" />`
+                : `<div style="width:40px;height:40px;border-radius:50%;background:${char!.gender === 'female' ? '#e84393' : '#d4a574'};display:flex;align-items:center;justify-content:center;font-weight:bold;color:#fff;font-size:16px">${char!.shortName.charAt(0)}</div>`
+              }
+              <div>
+                <div style="font-size:15px;font-weight:bold">${params.data.fullName}</div>
+                ${char?.tag ? `<div style="color:#888;font-size:12px">${char.tag}</div>` : ''}
+              </div>
+            </div>
             <div style="border-top:1px solid #444;padding-top:6px;margin-top:6px">
               <div style="color:#888;font-size:11px;margin-bottom:4px">${TEXT.connections[locale]}</div>
               ${relHtml}
@@ -212,12 +233,14 @@ function buildGraphOption(locale: Locale): EChartsOption {
         type: 'graph',
         layout: 'force',
         force: {
-          repulsion: 400,
-          gravity: 0.08,
-          edgeLength: [120, 200],
+          repulsion: 600,
+          gravity: 0.05,
+          edgeLength: [150, 250],
           layoutAnimation: true,
+          friction: 0.6,
         },
         roam: true,
+        scaleLimit: { min: 0.6, max: 2.5 },
         draggable: true,
         focusNodeAdjacency: true,
         categories: [
@@ -228,31 +251,40 @@ function buildGraphOption(locale: Locale): EChartsOption {
         links: links,
         lineStyle: {
           color: '#666',
-          curveness: 0.15,
+          curveness: 0.2,
+          opacity: 0.7,
         },
         label: {
           show: true,
           position: 'bottom' as const,
-          fontSize: 12,
+          fontSize: 13,
           color: '#e0e0e0',
+          distance: 8,
         },
         emphasis: {
           focus: 'adjacency',
           lineStyle: {
             width: 4,
+            opacity: 1,
           },
           itemStyle: {
             shadowBlur: 25,
             shadowColor: 'rgba(212,165,116,0.6)',
           },
+          label: {
+            fontSize: 14,
+            fontWeight: 'bold',
+          },
         },
+        animationDuration: 1500,
+        animationEasingUpdate: 'cubicOut',
       },
     ],
     grid: {
-      top: 20,
-      bottom: 60,
-      left: 20,
-      right: 20,
+      top: 30,
+      bottom: 70,
+      left: 30,
+      right: 30,
     },
   };
 
@@ -365,16 +397,16 @@ export default function CouplesSection() {
 
         {/* Desktop: ECharts Graph */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.98 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.6 }}
-          className={`hidden md:block ${PANEL} p-4`}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+          className={`hidden md:block ${PANEL} p-6`}
         >
           <ReactECharts
             ref={chartRef}
             option={buildGraphOption(locale)}
-            style={{ height: '600px', width: '100%' }}
+            style={{ height: '650px', width: '100%' }}
             opts={{ renderer: 'canvas' }}
           />
         </motion.div>
