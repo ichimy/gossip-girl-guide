@@ -132,14 +132,6 @@ function buildGraphOption(locale: Locale): EChartsOption {
         fontSize: 12,
         fontWeight: (char.id === 'blair' ? 'bold' : 'normal') as 'bold' | 'normal',
         color: '#e0e0e0',
-        formatter: isMain ? '{b}' : `{b|${char.shortName}}`,
-        rich: {
-          b: {
-            fontSize: 12,
-            color: '#e0e0e0',
-            fontWeight: 'normal',
-          },
-        },
       },
       category: char.gender,
     };
